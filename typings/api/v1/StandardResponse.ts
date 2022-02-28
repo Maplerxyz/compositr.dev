@@ -1,4 +1,4 @@
-export default interface StandardResponse<Data = any> {
+export default interface StandardResponse<Data = unknown> {
   message: string;
   data: Data;
 }
