@@ -5,6 +5,7 @@ const ResumableUploadSchema = new mongoose.Schema({
   filename: String,
   size: Number, // Size in bytes
   progress: Number, // Bytes recieved, if size === progress then the file is complete
+  raw: Buffer, // The raw file data
 });
 
-export default mongoose.model("ResumableUpload", ResumableUploadSchema);
+export default mongoose.models.ResumableUpload || mongoose.model("ResumableUpload", ResumableUploadSchema);
