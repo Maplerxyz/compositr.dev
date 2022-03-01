@@ -12,4 +12,4 @@ export interface APIUser {
   key: string;
 }
 
-export default mongoose.model("APIUser", APIUserSchema);
+export default mongoose.models.APIUser || mongoose.model("APIUser", APIUserSchema);
