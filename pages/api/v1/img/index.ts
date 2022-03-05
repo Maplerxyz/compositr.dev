@@ -52,6 +52,11 @@ export default async function handler(
     return res
       .status(400)
       .json({ message: "Invalid X-Image-Size header", data: null });
+  if (parseInt(size) > 8_000_000)
+    return res.status(413).json({
+      message: "Image size over 8MB limit",
+      data: null,
+    });
   if (!authorization)
     return res.status(401).json({
       message: "Missing Authorization header! Unauthorized.",
