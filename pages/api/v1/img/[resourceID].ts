@@ -33,5 +33,5 @@ export default async function handler(
       .toLowerCase()
       .replace(".", "")}; charset=utf-8`
   );
-  res.status(200).send(image.raw);
+  return res.status(200).send(image.raw);
 }
