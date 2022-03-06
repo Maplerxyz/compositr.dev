@@ -8,4 +8,13 @@ const ResumableUploadSchema = new mongoose.Schema({
   raw: Buffer, // The raw file data
 });
 
-export default mongoose.models.ResumableUpload || mongoose.model("ResumableUpload", ResumableUploadSchema);
+export default mongoose.models.ResumableUpload ||
+  mongoose.model("ResumableUpload", ResumableUploadSchema);
+
+export interface ResumableUpload {
+  uuid: string;
+  filename: string;
+  size: number;
+  progress: number;
+  raw: Buffer;
+}
