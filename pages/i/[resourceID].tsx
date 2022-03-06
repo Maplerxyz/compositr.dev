@@ -6,9 +6,10 @@ const Image: NextPage = (props: any) => {
 
   return (
     <div className="flex h-screen justify-center items-center">
+      <div className="p-6 shadow shadow-xl rounded-xl justify-center text-center bg-hex-323232">
         <ImageBox resourceID={resourceID as string} />
       </div>
-    
+    </div>
   );
 };
 
