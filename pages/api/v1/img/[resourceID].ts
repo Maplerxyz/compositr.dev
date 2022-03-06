@@ -20,7 +20,9 @@ export default async function handler(
         "Invalid resourseID in URL! URL should be /api/v1/img/RESOURCE_ID",
       data: null,
     });
-  const image = await ImageFile.findOne({ resourceID: resourceID }).exec();
+  const image = await ImageFile.findOne({
+    resourceID: (resourceID as string).replace(/\.[0-9a-z]+$/i, ""),
+  }).exec();
   if (!image)
     return res.status(404).json({
       message: "Image not found",
