@@ -26,14 +26,12 @@ export default async function handler(
       message: "Image not found",
       data: null,
     });
-  return res
-    .setHeader(
-      "Content-Type",
-      `image/${image.filename
-        .match(/\.[0-9a-z]+$/i)[0]
-        .toLowerCase()
-        .replace(".", "")}; charset=utf-8`
-    )
-    .status(200)
-    .send(image.raw);
+  res.setHeader(
+    "Content-Type",
+    `image/${image.filename
+      .match(/\.[0-9a-z]+$/i)[0]
+      .toLowerCase()
+      .replace(".", "")}; charset=utf-8`
+  );
+  res.status(200).send(image.raw);
 }
