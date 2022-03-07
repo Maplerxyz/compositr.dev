@@ -18,4 +18,12 @@ export default defineConfig({
       })
     ),
   ],
+  theme: {
+    extend: {
+      colors: {
+        "card-bg": "#323232",
+        "page-bg": "#202020"
+      }
+    }
+  }
 });
