@@ -49,6 +49,7 @@ export default async function handler(
       width,
       height,
       exif,
+      size: image.size
     },
   });
 }
