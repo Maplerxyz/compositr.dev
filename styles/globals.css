@@ -1,3 +1,9 @@
 body {
   @apply text-white;
 }
+
+@layer base {
+  input {
+    @apply focus:outline-none focus:ring;
+  }
+}
