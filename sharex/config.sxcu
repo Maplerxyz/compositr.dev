@@ -1,0 +1,13 @@
+{
+  "Name": "Compositr's Image Hosting",
+  "RequestMethod": "POST",
+  "RequestURL": "https://compositr.dev/api/v1/img/shx",
+  "DestinationType": "ImageUploader",
+  "Headers": {
+    "Authorization": "Bearer CHANGE_ONLY_THIS_TO_YOUR_TOKEN_DO_NOT_REMOVE_BEARER",
+    "X-Image-Filename": "$filename$"
+  },
+  "Body": "Binary",
+  "URL": "https://compositr.dev/i/$json:data.resourceID$",
+  "ErrorMessage": "$json:message$"
+}
