@@ -46,7 +46,18 @@ export default function ImageBox(props: Props) {
           }`}
           download
         >
-          Download
+          Download{" "}
+          <span
+            className={`text-sm ${
+              meta.size / 1_000_000 > 4 ? "text-red-500" : "text-blue-500"
+            }`}
+          >
+            (
+            {meta.size / 1_000_000 < 1
+              ? `${meta.size / 1_000}KB`
+              : `~${Math.ceil(meta.size / 1_000_000)}MB`}
+            )
+          </span>
         </LinkButton>{" "}
         <LinkButton
           colourStyle="bg-sky-500"
