@@ -176,6 +176,7 @@ export default async function handler(
       uuid: image.uuid,
       size: buffer.length,
       raw: buffer,
+      created: new Date(),
     } as ImageFileType);
     await file.save();
     return await ResumableUpload.deleteOne({ uuid }).exec();
