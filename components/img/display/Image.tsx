@@ -22,11 +22,24 @@ export default function ImageBox(props: Props) {
   if (!meta.width) return <span>Loading</span>;
   return (
     <>
-    {/* Begin Head */}
-    <Head>
-      <title>{meta.filename}</title>
-    </Head>
-    {/* End Head */}
+      {/* Begin Head */}
+      <Head>
+        <title>{meta.filename}</title>
+        <meta property="og:title" content={meta.filename} />
+        <meta property="og:type" content="image" />
+        <meta
+          property="og:image"
+          content={`https://www.compositr.dev/api/v1/img/${props.resourceID}`}
+        />
+        <meta property="og:sitename" content="Compositr's Website" />
+        <meta property="og:image:height" content={meta.height} />
+        <meta property="og:image:width" content={meta.width} />
+        <meta
+          property="og:description"
+          content={`Image uploaded by ${meta.owner} to Compositr's Image Hosting`}
+        />
+      </Head>
+      {/* End Head */}
       <h1 className="text-2xl mb-3 font-semibold">{meta.filename}</h1>
       <h2 className="text-xl mb-3">
         ID: {meta.resourceID}{" "}
