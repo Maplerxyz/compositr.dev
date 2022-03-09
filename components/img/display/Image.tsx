@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import LinkButton from "../../misc/btn/linkButton";
@@ -21,6 +22,11 @@ export default function ImageBox(props: Props) {
   if (!meta.width) return <span>Loading</span>;
   return (
     <>
+    {/* Begin Head */}
+    <Head>
+      <title>{meta.filename}</title>
+    </Head>
+    {/* End Head */}
       <h1 className="text-2xl mb-3 font-semibold">{meta.filename}</h1>
       <h2 className="text-xl mb-3">
         ID: {meta.resourceID}{" "}
