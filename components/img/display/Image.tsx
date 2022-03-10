@@ -26,14 +26,21 @@ export default function ImageBox(props: Props) {
       <Head>
         <title>{meta.filename}</title>
         <meta property="og:title" content={meta.filename} />
-        <meta property="og:type" content="image" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://www.compositr.com/i/${props.resourceID}`}
+        />
         <meta
           property="og:image"
           content={`https://www.compositr.dev/api/v1/img/${props.resourceID}`}
         />
-        <meta property="og:sitename" content="Compositr's Website" />
-        <meta property="og:image:height" content={meta.height} />
-        <meta property="og:image:width" content={meta.width} />
+        <meta
+          property="og:description"
+          content={`Compositr's Image Hosting - Image uploaded by ${meta.owner}`}
+        />
+        <meta name="theme-color" content="#f24fff" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta
           property="og:description"
           content={`Image uploaded by ${meta.owner} to Compositr's Image Hosting`}
