@@ -10,7 +10,7 @@ const ImageFileSchema = new Schema({
   created: Date
 });
 
-export default mongoose.models.ImageFile ||
+export default mongoose.models?.ImageFile ||
   mongoose.model("ImageFile", ImageFileSchema);
 
 export interface ImageFile {
