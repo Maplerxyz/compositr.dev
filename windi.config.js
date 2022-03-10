@@ -22,8 +22,9 @@ export default defineConfig({
     extend: {
       colors: {
         "card-bg": "#323232",
-        "page-bg": "#202020"
-      }
-    }
-  }
+        "page-bg": "#202020",
+        compositr: "#f24fff",
+      },
+    },
+  },
 });
