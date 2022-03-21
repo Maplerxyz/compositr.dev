@@ -1,25 +1,28 @@
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import { ImageMetaData } from "../../../pages/api/v1/img/meta/[resourceID]";
+import Button from "../../misc/btn/button";
 import LinkButton from "../../misc/btn/linkButton";
-import ErrorBox from "../../utility/infobox/errorbox";
+import CenterBox from "../../utility/container/centerbox";
+
+const ErrorBox = dynamic(() => import("../../utility/infobox/errorbox"));
 
 interface Props {
   resourceID: string;
+  meta: ImageMetaData;
 }
 
 export default function ImageBox(props: Props) {
-  const [meta, setMeta] = useState<Record<string, any>>({});
-  useEffect(() => {
-    fetch(`/api/v1/img/meta/${props.resourceID}`)
-      .then((res) => res.json())
-      .then(({ data }) => setMeta(data))
-      .catch((err) => setMeta({ error: err }));
-  }, [props.resourceID]);
-
-  if (!meta) return <ErrorBox>404 - Image not found</ErrorBox>;
-  if (meta.error) return <span>{meta.error}</span>;
-  if (!meta.width) return <span>Loading</span>;
+  const { meta } = props;
+  if (!meta)
+    return (
+      <CenterBox>
+        <ErrorBox>404 - Image not found</ErrorBox>
+      </CenterBox>
+    );
   return (
     <>
       {/* Begin Head */}
@@ -47,6 +50,9 @@ export default function ImageBox(props: Props) {
         />
       </Head>
       {/* End Head */}
+
+      <ToastContainer position="bottom-right" />
+
       <h1 className="text-2xl mb-3 font-semibold">{meta.filename}</h1>
       <h2 className="text-xl mb-3">
         ID: {meta.resourceID}{" "}
@@ -62,13 +68,14 @@ export default function ImageBox(props: Props) {
         height={720 > meta.height ? meta.height : 720}
         priority
         className="shadow rounded max-w-full h-auto align-middle border-none object-scale-down"
+        sizes="(max-width: 1280px) 25vw, 1280px"
       />
       <div className="items-center mt-2">
         <p className="mb-4">Uploaded by {meta.owner}</p>
         <LinkButton
           colourStyle="bg-green-500"
           href={`/api/v1/img/${props.resourceID}${
-            meta.filename.match(/\.[0-9a-z]+$/i)[0]
+            meta.filename.match(/\.[0-9a-z]+$/i)?.[0]
           }`}
           download
         >
@@ -88,11 +95,23 @@ export default function ImageBox(props: Props) {
         <LinkButton
           colourStyle="bg-sky-500"
           href={`/api/v1/img/${props.resourceID}${
-            meta.filename.match(/\.[0-9a-z]+$/i)[0]
+            meta.filename.match(/\.[0-9a-z]+$/i)?.[0]
           }`}
         >
           Full Image
-        </LinkButton>
+        </LinkButton>{" "}
+        <Button
+          colourStyle="bg-gray-500 -sm:hidden"
+          onClick={(e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText(
+              `https://compositr.dev/i/${props.resourceID}`
+            );
+            toast.success("Copied to clipboard!");
+          }}
+        >
+          Copy Link
+        </Button>
       </div>
     </>
   );

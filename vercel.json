@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.acme.com"
+        }
+      ],
+      "destination": "/blog/:path*"
+    }
+  ]
+}

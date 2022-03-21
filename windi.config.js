@@ -12,7 +12,7 @@ export default defineConfig({
     exclude: ["node_modules", ".git", ".next"],
   },
   safelist: [
-    ...["green", "sky"].map((colour) =>
+    ...["green", "sky", "gray", "emerald"].map((colour) =>
       range(8, 100, 100).map((i) => {
         return `hover:bg-${colour}-${i}`;
       })

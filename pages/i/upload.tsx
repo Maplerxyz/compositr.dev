@@ -4,15 +4,31 @@ import { ToastContainer, toast } from "react-toastify";
 import CenterBox from "../../components/utility/container/centerbox";
 
 import "react-toastify/dist/ReactToastify.min.css";
+import ThumbnailBar from "../../components/img/display/ThumbnailBar";
+
+export interface Uploaded {
+  resourceID?: string;
+  filename: string;
+  uuid: string;
+}
+
+interface Files {
+  raw: Uint8Array;
+  type: string;
+  size: number;
+}
 
 export default function Upload() {
   const [apiKey, setApiKey] = useState("");
-  const [files, setFiles] = useState<
-    { raw: Uint8Array; type: string; size: number }[]
-  >([]);
+
+  const [files, setFiles] = useState<Files[]>([]);
   const [ringStyle, setRingStyle] = useState("");
+  const [uploaded, setUploaded] = useState<Uploaded[]>([]);
   const onChange = (e: any) => setApiKey(e.target.value);
-  const onRemove = () => setFiles([]);
+  const onRemove = () => {
+    setFiles([]);
+    setUploaded([]);
+  };
   const onSubmit = async (e: any) => {
     e.preventDefault();
     if (!apiKey) {
@@ -20,21 +36,28 @@ export default function Upload() {
       toast.error("Please enter your API key");
       return setRingStyle("ring-red-500 ring-2");
     }
-    if (apiKey.length !== 42)
+    if (!apiKey.match(/^[a-zA-Z0-9]{42}$/)?.length)
       return toast.error("Please enter a valid API key");
 
     // Ask server to make resumable uploads
     const resumables = [];
     for (const file of files) {
-      const res = await fetch(`/api/v1/img/`, {
+      const filename = Date.now().toString();
+      const r = fetch(`/api/v1/img/`, {
         method: "POST",
-        body: JSON.stringify({ filename: `${Date.now()}` }),
+        body: JSON.stringify({ filename }),
         headers: {
           "X-Image-Mimetype": file.type,
           "X-Image-Size": file.size.toString(),
           Authorization: `Bearer ${apiKey}`,
         },
       });
+      toast.promise(r, {
+        success: "Registered image",
+        pending: "Registering an image...",
+        error: "Error registering an image",
+      });
+      const res = await r;
       const json = await res.json();
       const { message, data } = json;
       if (res.status !== 201 || data === null) {
@@ -50,6 +73,7 @@ export default function Upload() {
         // @ts-expect-error
         return toast.error(human);
       }
+      setUploaded((u) => [...u, { filename, uuid: data.uuid }]);
       resumables.push(data);
     }
 
@@ -74,8 +98,17 @@ export default function Upload() {
             if (firstRes.status !== 200) {
               throw new Error("Something went wrong");
             }
+            const json = await firstRes.json();
+            setUploaded((u) => {
+              const i = u.findIndex((u) => u.uuid === upload.uuid);
+              const copy = [...u];
+              copy[i].resourceID = json.data.image.resourceID;
+              copy[i].filename = json.data.image.filename;
+              console.log(copy[i]);
+              return copy;
+            });
           } catch (err) {
-            toast.error(`Error uploading image #${i + 1}. Error ${err}`);
+            throw new Error(`Error uploading image #${i + 1}. Error ${err}`);
           }
         })
       ),
@@ -91,8 +124,8 @@ export default function Upload() {
     acceptedFiles.forEach((file: Blob) => {
       const reader = new FileReader();
 
-      reader.onabort = () => console.log("file reading was aborted");
-      reader.onerror = () => console.log("file reading has failed");
+      reader.onabort = () => console.log("File reading aborted");
+      reader.onerror = () => console.log("file reading failed");
       reader.onload = () => {
         // Turn the file into an ArrayBuffer
         const binaryStr = reader.result;
@@ -107,7 +140,7 @@ export default function Upload() {
     });
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
   return (
     <>
       <ToastContainer position="bottom-right" />
@@ -120,7 +153,7 @@ export default function Upload() {
             Drag and Drop to Upload
           </p>
           <p className="text-gray-500">
-            (Accepted formats are jpg, jpeg, png &amp; webp. Max. 8MB)
+            (Accepted formats are jpg, jpeg, png, gif &amp; webp. Max. 8MB)
           </p>
 
           <input {...getInputProps()} />
@@ -136,14 +169,22 @@ export default function Upload() {
               id="apiKey"
               onChange={onChange}
             />
-            <button className="bg-green-400 rounded font-bold mt-4 p-2" type="submit">
+            <button
+              className="bg-green-400 rounded font-bold mt-4 p-2"
+              type="submit"
+            >
               Upload Images
             </button>
-            <button className="bg-red-400 rounded font-bold mt-4 p-2 ml-2" type="reset" onClick={onRemove}>
+            <button
+              className="bg-red-400 rounded font-bold mt-4 p-2 ml-2"
+              type="reset"
+              onClick={onRemove}
+            >
               Clear Form
             </button>
           </form>
         </div>
+        <ThumbnailBar uploaded={uploaded} />
       </CenterBox>
     </>
   );

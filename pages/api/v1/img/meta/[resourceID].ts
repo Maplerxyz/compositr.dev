@@ -9,7 +9,7 @@ import ExifReader from "exifreader";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<StandardResponse>
+  res: NextApiResponse<StandardResponse<ImageMetaData | null>>
 ) {
   await dbConnect();
   const { resourceID } = req.query;
@@ -46,10 +46,20 @@ export default async function handler(
       filename: image.filename,
       owner: image.owner,
       resourceID: image.resourceID,
-      width,
-      height,
+      width: width || 0,
+      height: width || 0,
       exif,
-      size: image.size
+      size: image.size,
     },
   });
+}
+
+export interface ImageMetaData {
+  filename: string;
+  owner: string;
+  resourceID: string;
+  width: number;
+  height: number;
+  exif: Record<string, any>;
+  size: number;
 }

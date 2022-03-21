@@ -4,14 +4,16 @@ const ImageFileSchema = new Schema({
   uuid: String,
   filename: String,
   size: Number, // Size in bytes
-  resourceID: String, // Resource ID
+  resourceID: { type: String, index: true }, // Resource ID
   owner: String, // Owner username
   raw: Buffer,
-  created: Date
+  created: Date,
 });
 
-export default mongoose.models?.ImageFile ||
-  mongoose.model("ImageFile", ImageFileSchema);
+const model =
+  mongoose.models?.ImageFile ?? mongoose.model("ImageFile", ImageFileSchema);
+
+export default model;
 
 export interface ImageFile {
   uuid: string;
@@ -20,5 +22,5 @@ export interface ImageFile {
   resourceID: string;
   owner: string;
   raw: Buffer;
-  created: Date
+  created: Date;
 }
