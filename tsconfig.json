@@ -24,8 +24,8 @@
       "@/modules/*": ["src/modules/*"],
       "@/pages/*": ["src/pages/*"],
       "@/typings/*": ["src/common/typings/*"]
-
-    }
+    },
+    "baseUrl": "."
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
