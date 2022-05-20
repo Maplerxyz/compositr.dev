@@ -43,7 +43,7 @@ export default function Index(props: {
         <Link href="/contact">contact me.</Link>
       </p>
 
-      <h2>What I work with</h2>
+      <h2>What I work with 🧰</h2>
       <p>
         I mainly write TypeScript with Visual Studio Code for it&apos;s{" "}
         <i>✨ amazing ✨</i> Intellisense. Shown below is a list of technologies
@@ -71,10 +71,10 @@ export default function Index(props: {
           SiDocker,
           SiDeno,
           SiLinux,
-          SiRailway
+          SiRailway,
         ]}
       />
-      <h2>What I am working on</h2>
+      <h2>What I am working on 🛠</h2>
       <p>
         Below is a small sample of my most popular open-source projects which I
         am currently working on. See my full list of projects over at my{" "}
