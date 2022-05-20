@@ -1,5 +1,31 @@
+import TechBar from "@/common/components/bars/Tech/TechBar";
 import RepoCard from "@/common/components/cards/Repo/RepoCard";
 import Link from "next/link";
+import {
+  SiArchlinux,
+  SiCplusplus,
+  SiDeno,
+  SiDocker,
+  SiEthereum,
+  SiExpress,
+  SiGit,
+  SiGithub,
+  SiJavascript,
+  SiLinux,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNpm,
+  SiRailway,
+  SiReact,
+  SiRedis,
+  SiTailwindcss,
+  SiTypescript,
+  SiUbuntu,
+  SiVercel,
+  SiVisualstudiocode,
+  SiYarn,
+} from "react-icons/si";
 
 export default function Index(props: {
   stars: number;
@@ -20,9 +46,34 @@ export default function Index(props: {
       <h2>What I work with</h2>
       <p>
         I mainly write TypeScript with Visual Studio Code for it&apos;s{" "}
-        <i>✨ amazing ✨</i> Intellisense. Shown below are some other
-        tools/languages I use a lot for development.
+        <i>✨ amazing ✨</i> Intellisense. Shown below is a list of technologies
+        and languages I&apos;ve had experience with in the past, or use
+        currently.
       </p>
+      <TechBar
+        icons={[
+          SiReact,
+          SiTypescript,
+          SiYarn,
+          SiNpm,
+          SiNextdotjs,
+          SiTailwindcss,
+          SiExpress,
+          SiVisualstudiocode,
+          SiNodedotjs,
+          SiGit,
+          SiGithub,
+          SiJavascript,
+          SiVercel,
+          SiMongodb,
+          SiEthereum,
+          SiRedis,
+          SiDocker,
+          SiDeno,
+          SiLinux,
+          SiRailway
+        ]}
+      />
       <h2>What I am working on</h2>
       <p>
         Below is a small sample of my most popular open-source projects which I
