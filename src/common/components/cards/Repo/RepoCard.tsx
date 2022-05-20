@@ -1,4 +1,5 @@
 import type { GitHubAPIRepo } from "@/pages/index";
+import { StarIcon, DocumentDuplicateIcon } from "@heroicons/react/solid";
 
 export default function RepoCard(props: { repo: GitHubAPIRepo }) {
   const { repo } = props;
@@ -11,6 +12,20 @@ export default function RepoCard(props: { repo: GitHubAPIRepo }) {
       <span className="text-gray-400 overflow-clip">{repo.description}</span>
       <div className="mt-auto flex flex-row justify-between gap-6">
         <span className="flex flex-row items-center">{repo.language}</span>
+        <span>
+          <div className="inline-block align-middle">
+            <StarIcon className="w-5 h-5" />
+          </div>{" "}
+          <div className="inline-block align-middle">
+            {repo.stargazers_count}
+          </div>
+        </span>
+        <span>
+          <div className="inline-block align-middle">
+            <DocumentDuplicateIcon className="w-5 h-5" />
+          </div>{" "}
+          <div className="inline-block align-middle">{repo.forks_count}</div>
+        </span>
       </div>
     </div>
   );
