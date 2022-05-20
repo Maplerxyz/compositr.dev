@@ -1,4 +1,4 @@
-import { CheckIcon } from "@heroicons/react/solid";
+import { RiSendPlane2Fill } from "react-icons/ri";
 import { FormEvent, useState } from "react";
 
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -82,7 +82,7 @@ export default function Contact() {
             type="submit"
             className="rounded-full bg-cyan-500 hover:bg-cyan-500/80 shadow-cyan-600/50 disabled:bg-cyan-600/80 shadow-lg transition-colors px-3 py-1 mr-4 inline-block align-middle"
           >
-            <CheckIcon className="w-5 h-5 align-middle inline-block" />{" "}
+            <RiSendPlane2Fill className="w-5 h-5 align-middle inline-block" />{" "}
             <span className="inline-block align-middle">Send</span>
           </button>
           <span className="normal-case inline-block align-middle animate-pulse">
