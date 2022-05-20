@@ -7,7 +7,7 @@ export default function Index(props: {
   topRepos: [GitHubAPIRepo, GitHubAPIRepo, GitHubAPIRepo, GitHubAPIRepo];
 }) {
   return (
-    <div className="prose prose-white text-white sm:m-0 mx-6">
+    <div className="prose prose-white text-white">
       <h1>Hello World! I&apos;m Compositr 👋</h1>
       <p>
         I am a self-taught (mostly!) coder and crypto enthusiast. I enjoy
