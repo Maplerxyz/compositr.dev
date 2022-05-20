@@ -1,5 +1,8 @@
 import { RiSendPlane2Fill } from "react-icons/ri";
+import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
 import { FormEvent, useState } from "react";
+import ContactCard from "@/common/components/cards/Contact/ContactCard";
 
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -39,57 +42,76 @@ export default function Contact() {
         <h1>Contact Me</h1>
         <p>
           Leave a message in the form below, and I&apos;ll try to get back to
-          you as soon as possible!
+          you as soon as possible! Not a fan of web messages? Contact me via
+          Discord or any of my other socials below 👇 instead.
         </p>
       </div>
-      <form
-        onSubmit={onSubmit}
-        className="not-prose uppercase font-semibold bg-white/5 p-4 rounded border border-slate-500 text-white"
-      >
-        <div className="mb-4">
-          <label htmlFor="email" className="block">
-            Email
-          </label>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            className="bg-white/10 border-0 mt-1 rounded w-full invalid:border invalid:border-red-500 focus:invalid:ring-red-500"
-            type="email"
-            name="email"
-            id="email"
-            placeholder="example@example.com"
-            min={1}
+      <div className="flex flex-col justify-center md:justify-start md:flex-row-reverse gap-4">
+        <aside className="flex flex-col basis-1/4">
+          <ContactCard
+            icon={<FaDiscord className="h-8 w-8 text-[#5865F2]" />}
+            name={"Compositr#0001"}
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="message" className="block">
-            Message
-          </label>
-          <textarea
-            onChange={(e) => setMessage(e.target.value)}
-            value={message}
-            className="bg-white/10 border-0 mt-1 rounded w-full"
-            name="message"
-            id="message"
-            placeholder="Hi there..."
-            maxLength={3000}
+          <ContactCard
+            icon={<FaTelegramPlane className="h-8 w-8 text-[#2481cc]" />}
+            name={"@Compositr"}
+            href="https://t.me/Compositr"
           />
-        </div>
-        <div className="mb-5">
-          <button
-            disabled={isLoading}
-            role={"form"}
-            type="submit"
-            className="rounded-full bg-cyan-500 hover:bg-cyan-500/80 shadow-cyan-600/50 disabled:bg-cyan-600/80 shadow-lg transition-colors px-3 py-1 mr-4 inline-block align-middle"
-          >
-            <RiSendPlane2Fill className="w-5 h-5 align-middle inline-block" />{" "}
-            <span className="inline-block align-middle">Send</span>
-          </button>
-          <span className="normal-case inline-block align-middle animate-pulse">
-            {notification}
-          </span>
-        </div>
-      </form>
+          <ContactCard
+            icon={<MdMail className="h-8 w-8" />}
+            name={"mail@compositr.dev"}
+            href="mailto:mail@compositr.dev"
+          />
+        </aside>
+        <form
+          onSubmit={onSubmit}
+          className="not-prose uppercase font-semibold bg-white/5 p-4 rounded border border-slate-500 text-white basis-3/4"
+        >
+          <div className="mb-4">
+            <label htmlFor="email" className="block">
+              Email
+            </label>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className="bg-white/10 border-0 mt-1 rounded w-full invalid:border invalid:border-red-500 focus:invalid:ring-red-500"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@example.com"
+              min={1}
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="message" className="block">
+              Message
+            </label>
+            <textarea
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              className="bg-white/10 border-0 mt-1 rounded w-full"
+              name="message"
+              id="message"
+              placeholder="Hi there..."
+              maxLength={3000}
+            />
+          </div>
+          <div className="mb-5">
+            <button
+              disabled={isLoading}
+              role={"form"}
+              type="submit"
+              className="rounded-full bg-cyan-500 hover:bg-cyan-500/80 shadow-cyan-600/50 disabled:bg-cyan-600/80 shadow-lg transition-colors px-3 py-1 mr-4 inline-block align-middle"
+            >
+              <RiSendPlane2Fill className="w-5 h-5 align-middle inline-block" />{" "}
+              <span className="inline-block align-middle">Send</span>
+            </button>
+            <span className="normal-case inline-block align-middle animate-pulse">
+              {notification}
+            </span>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
