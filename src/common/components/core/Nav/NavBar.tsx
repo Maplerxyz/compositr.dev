@@ -6,6 +6,7 @@ export default function NavBar() {
       <div className="">
         <NavBarButton href="/">Home</NavBarButton>
         <NavBarButton href="/contact">Contact Me</NavBarButton>
+        <NavBarButton href="https://blog.compositr.dev">Blog</NavBarButton>
       </div>
     </nav>
   );
