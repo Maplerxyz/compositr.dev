@@ -2,7 +2,7 @@ module.exports = {
   content: ["src/**/*.{tsx,ts,js,jsx}"],
   theme: {
     fontFamily: {
-      sans: ["Helvetica", "Arial", "sans-serif"],
+      sans: "Roboto",
     },
     extend: {
       colors: {
