@@ -5,7 +5,7 @@ export default function RepoCard(props: { repo: GitHubAPIRepo }) {
   const { repo } = props;
   return (
     <div
-      className="border-slate-500 hover:border-slate-400 border not-prose rounded h-full cursor-pointer transition-colors flex flex-col p-3 w-full"
+      className="border-slate-500 hover:border-sky-500 delay-75 duration-300 transition-all border not-prose rounded h-full cursor-pointer hover:scale-105 even:hover:-rotate-1 odd:hover:rotate-1 flex flex-col p-3 w-full"
       onClick={() => window.open(repo.html_url, "_blank")?.focus()}
     >
       <h3 className="font-semibold">{repo.name}</h3>
