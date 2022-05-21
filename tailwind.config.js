@@ -1,7 +1,15 @@
 module.exports = {
   content: ["src/**/*.{tsx,ts,js,jsx}"],
   theme: {
+    fontFamily: {
+      sans: ["Helvetica", "Arial", "sans-serif"],
+    },
     extend: {
+      colors: {
+        "card-bg": "#323232",
+        "page-bg": "#202020",
+        compositr: "#f24fff",
+      },
       typography: ({ theme }) => ({
         white: {
           css: {
