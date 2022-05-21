@@ -11,7 +11,7 @@ export default function NavBarButton(props: CoreProps & { href: string }) {
         type="button"
         className={`p-2 hover:text-white rounded-md text-gray-400 mr-2 ${
           router.pathname === props.href
-            ? "bg-slate-600/50"
+            ? "bg-slate-600/50 border-compositr border"
             : "hover:bg-slate-600/10"
         }`}
       >
