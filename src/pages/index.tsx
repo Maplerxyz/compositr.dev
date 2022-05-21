@@ -34,7 +34,10 @@ export default function Index(props: {
 }) {
   return (
     <div className="prose prose-white text-white">
-      <h1>Hello World! I&apos;m Compositr 👋</h1>
+      <h1>
+        Hello World! I&apos;m <span className="text-compositr">Compositr</span>{" "}
+        👋
+      </h1>
       <p>
         I am a self-taught (mostly!) coder and crypto enthusiast. I enjoy
         working with code and computers in general, and I usually use TypeScript
