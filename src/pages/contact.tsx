@@ -1,4 +1,5 @@
 import { RiSendPlane2Fill } from "react-icons/ri";
+import { AiOutlineLoading } from "react-icons/ai";
 import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
 import { FormEvent, useState } from "react";
@@ -74,7 +75,7 @@ export default function Contact() {
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="bg-white/10 border-0 mt-1 rounded w-full invalid:border invalid:border-red-500 focus:invalid:ring-red-500"
+              className="bg-white/10 border-0 mt-1 rounded w-full invalid:border invalid:border-red-500 focus:invalid:ring-red-500 focus:ring-compositr"
               type="email"
               name="email"
               id="email"
@@ -89,7 +90,7 @@ export default function Contact() {
             <textarea
               onChange={(e) => setMessage(e.target.value)}
               value={message}
-              className="bg-white/10 border-0 mt-1 rounded w-full"
+              className="bg-white/10 border-0 mt-1 rounded w-full focus:ring-compositr"
               name="message"
               id="message"
               placeholder="Hi there..."
@@ -101,9 +102,10 @@ export default function Contact() {
               disabled={isLoading}
               role={"form"}
               type="submit"
-              className="rounded-full bg-cyan-500 hover:bg-cyan-500/80 shadow-cyan-600/50 disabled:bg-cyan-600/80 shadow-lg transition-colors px-3 py-1 mr-4 inline-block align-middle"
+              className="rounded-full bg-compositr hover:bg-compositr/80 shadow-compositr/50 group disabled:bg-compositr/80 shadow-lg transition-colors px-3 py-1 mr-4 inline-block align-middle"
             >
-              <RiSendPlane2Fill className="w-5 h-5 align-middle inline-block" />{" "}
+              <AiOutlineLoading className="w-5 h-5 align-middle hidden group-disabled:inline-block animate-spin" />
+              <RiSendPlane2Fill className="w-5 h-5 align-middle inline-block group-disabled:hidden" />{" "}
               <span className="inline-block align-middle">Send</span>
             </button>
             <span className="normal-case inline-block align-middle animate-pulse">
