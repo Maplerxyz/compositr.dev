@@ -1,5 +1,10 @@
 import type StandardResponse from "@/common/typings/api/StandardResponse";
 import type { NextApiRequest, NextApiResponse } from "next";
+import RateLimiter from "lambda-rate-limiter";
+
+const limit = RateLimiter({
+  interval: 60 * 1000,
+});
 
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -7,6 +12,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<StandardResponse>
 ) {
+  try {
+    await limit.check(10, req.headers["x-forwarded-for"] as string);
+  } catch {
+    return res.status(429).json({
+      data: {},
+      message: "Relax!",
+      error: true,
+    });
+  }
+
   const { body }: { body: void | Body } = req;
   const { DISCORD_WEBHOOK } = process.env;
 
