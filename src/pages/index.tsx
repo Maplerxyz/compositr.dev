@@ -21,7 +21,6 @@ import {
   SiRedis,
   SiTailwindcss,
   SiTypescript,
-  SiUbuntu,
   SiVercel,
   SiVisualstudiocode,
   SiYarn,
