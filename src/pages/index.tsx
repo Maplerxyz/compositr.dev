@@ -2,12 +2,11 @@ import TechBar from "@/common/components/bars/Tech/TechBar";
 import RepoCard from "@/common/components/cards/Repo/RepoCard";
 import Link from "next/link";
 import {
-  SiArchlinux,
-  SiCplusplus,
   SiDeno,
   SiDocker,
   SiEthereum,
   SiExpress,
+  SiFastify,
   SiGit,
   SiGithub,
   SiJavascript,
@@ -16,6 +15,7 @@ import {
   SiNextdotjs,
   SiNodedotjs,
   SiNpm,
+  SiPostman,
   SiRailway,
   SiReact,
   SiRedis,
@@ -75,6 +75,8 @@ export default function Index(props: {
           SiDeno,
           SiLinux,
           SiRailway,
+          SiFastify,
+          SiPostman,
         ]}
       />
       <h2>What I am working on 🛠</h2>
@@ -106,7 +108,7 @@ export async function getStaticProps() {
     `https://api.github-star-counter.workers.dev/user/compositr`
   ).then((res) => res.json());
   const repos: GitHubAPIRepo[] = await fetch(
-    `https://api.github.com/users/compositr/repos?type=owner&per_page=100`
+    `https://api.github.com/users/compositr/repos?type=owner&per_page=10&sort=updated`
   ).then((res) => res.json());
 
   // Get top 4 by stargazers
@@ -119,8 +121,8 @@ export async function getStaticProps() {
       forks,
       topRepos,
     },
-    // Revalidate every hour
-    revalidate: 3600,
+    // Revalidate minute
+    revalidate: 60,
   };
 }
 export interface GitHubAPIRepo {
