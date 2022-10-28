@@ -2,7 +2,7 @@ import type { IconType } from "react-icons";
 
 export default function TechBar({ icons }: Props) {
   return (
-    <div className="p-4 mx-1 my-2 flex-row flex-wrap flex w-full justify-center gap-2 gap-y-3 md:justify-evenly border border-compositr/60 rounded-xl shadow-lg shadow-compositr/50">
+    <div className="p-4 mx-1 my-2 flex-row flex-wrap flex w-full justify-center gap-2 gap-y-3 md:justify-evenly border border-compositr/60 bg-card-bg rounded-xl">
       {icons.map((icon: IconType, i) => (
         <div key={i} className="inline-block">
           {icon({ className: "h-6 w-6" })}

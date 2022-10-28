@@ -8,6 +8,7 @@ import {
   SiExpress,
   SiFastify,
   SiGit,
+  SiGitea,
   SiGithub,
   SiJavascript,
   SiLinux,
@@ -76,6 +77,7 @@ export default function Index(props: {
           SiRailway,
           SiFastify,
           SiPostman,
+          SiGitea
         ]}
       />
       <h2>What I am working on 🛠</h2>
