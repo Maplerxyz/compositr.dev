@@ -40,18 +40,16 @@ export default function Index(props: {
       </h1>
       <p>
         I am a self-taught (mostly!) coder and crypto enthusiast. I enjoy
-        working with code and computers in general, and I usually use TypeScript
-        as my main language. This is my personal website, where you can see what
-        I&apos;m currently working on, or{" "}
+        working with code and computers in general, and I use TypeScript as my
+        main language. This is my little corner of the web, where you can see
+        what I&apos;m currently working on, or{" "}
         <Link href="/contact">contact me.</Link>
       </p>
 
-      <h2>What I work with 🧰</h2>
+      <h2>What I work with</h2>
       <p>
-        I mainly write TypeScript with Visual Studio Code for it&apos;s{" "}
-        <i>✨ amazing ✨</i> Intellisense. Shown below is a list of technologies
-        and languages I&apos;ve had experience with in the past, or use
-        currently.
+        Shown below is a list of technologies and languages I&apos;ve had
+        experience with in the past, or use currently.
       </p>
       <TechBar
         icons={[
@@ -77,13 +75,13 @@ export default function Index(props: {
           SiRailway,
           SiFastify,
           SiPostman,
-          SiGitea
+          SiGitea,
         ]}
       />
-      <h2>What I am working on 🛠</h2>
+      <h2>What I am working on</h2>
       <p>
         Below is a small sample of my most popular open-source projects which I
-        am currently working on. See my full list of projects over at my{" "}
+        am currently working on. See my full list of projects over on{" "}
         <a
           href="https://github.com/compositr"
           target={"_blank"}
