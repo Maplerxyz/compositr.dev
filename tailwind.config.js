@@ -6,8 +6,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        "card-bg": "#323232",
-        "page-bg": "#202020",
+        "card-bg": "#3b4252",
+        "page-bg": "#2e3440",
         compositr: "#f24fff",
       },
       typography: ({ theme }) => ({
