@@ -39,7 +39,7 @@ export default function Contact() {
 
   return (
     <>
-      <div className="prose prose-white mb-4">
+      <div className="mb-4 prose prose-white">
         <h1>Contact Me</h1>
         <p>
           Leave a message in the form below, and I&apos;ll try to get back to
@@ -47,7 +47,7 @@ export default function Contact() {
           Discord or any of my other socials below 👇 instead.
         </p>
       </div>
-      <div className="flex flex-col justify-center md:justify-start md:flex-row-reverse gap-4">
+      <div className="flex flex-col gap-4 justify-center md:justify-start md:flex-row-reverse">
         <aside className="flex flex-col basis-1/4">
           <ContactCard
             icon={<FaDiscord className="h-8 w-8 text-[#5865F2]" />}
@@ -59,14 +59,14 @@ export default function Contact() {
             href="https://t.me/Compositr"
           />
           <ContactCard
-            icon={<MdMail className="h-8 w-8" />}
+            icon={<MdMail className="w-8 h-8" />}
             name={"mail@compositr.dev"}
             href="mailto:mail@compositr.dev"
           />
         </aside>
         <form
           onSubmit={onSubmit}
-          className="not-prose uppercase font-semibold bg-white/5 p-4 rounded border border-slate-500 text-white basis-3/4"
+          className="p-4 font-semibold text-white uppercase rounded border not-prose bg-white/5 border-nord1 basis-3/4"
         >
           <div className="mb-4">
             <label htmlFor="email" className="block">
@@ -75,7 +75,7 @@ export default function Contact() {
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="bg-white/10 border-0 mt-1 rounded w-full invalid:border invalid:border-red-500 focus:invalid:ring-red-500 focus:ring-compositr"
+              className="mt-1 w-full rounded border-0 bg-white/10 invalid:border invalid:border-red-500 focus:invalid:ring-red-500 focus:ring-compositr"
               type="email"
               name="email"
               id="email"
@@ -90,7 +90,7 @@ export default function Contact() {
             <textarea
               onChange={(e) => setMessage(e.target.value)}
               value={message}
-              className="bg-white/10 border-0 mt-1 rounded w-full focus:ring-compositr"
+              className="mt-1 w-full rounded border-0 bg-white/10 focus:ring-compositr"
               name="message"
               id="message"
               placeholder="Hi there..."
@@ -102,13 +102,13 @@ export default function Contact() {
               disabled={isLoading}
               role={"form"}
               type="submit"
-              className="rounded-full bg-compositr hover:bg-compositr/80 shadow-compositr/50 group disabled:bg-compositr/80 shadow-lg transition-colors px-3 py-1 mr-4 inline-block align-middle"
+              className="inline-block px-3 py-1 mr-4 align-middle rounded-full shadow-lg transition-colors bg-compositr hover:bg-compositr/80 shadow-compositr/50 group disabled:bg-compositr/80"
             >
-              <AiOutlineLoading className="w-5 h-5 align-middle hidden group-disabled:inline-block animate-spin" />
-              <RiSendPlane2Fill className="w-5 h-5 align-middle inline-block group-disabled:hidden" />{" "}
+              <AiOutlineLoading className="hidden w-5 h-5 align-middle animate-spin group-disabled:inline-block" />
+              <RiSendPlane2Fill className="inline-block w-5 h-5 align-middle group-disabled:hidden" />{" "}
               <span className="inline-block align-middle">Send</span>
             </button>
-            <span className="normal-case inline-block align-middle animate-pulse">
+            <span className="inline-block normal-case align-middle animate-pulse">
               {notification}
             </span>
           </div>
