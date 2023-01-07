@@ -17,7 +17,7 @@ export default async function handler(
   } catch {
     return res.status(429).json({
       data: {},
-      message: "Relax!",
+      message: "Too many requests. Try again later.",
       error: true,
     });
   }
