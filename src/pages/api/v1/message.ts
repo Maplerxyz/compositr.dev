@@ -71,8 +71,22 @@ export default async function handler(
             fields: [
               {
                 name: "Headers",
-                value: `User-Agent: ${req.headers["user-agent"]}\nSec-Ch-Ua-Plaform: ${req.headers["sec-ch-ua-platform"]}`,
+                value: `User-Agent: \`${
+                  req.headers["user-agent"]
+                }\`\nSec-Ch-Ua-Plaform: ${
+                  req.headers["sec-ch-ua-platform"] ?? "(none)"
+                }`,
                 inline: false,
+              },
+              {
+                name: "IP",
+                value: `Forwarded For ${req.headers["x-forwarded-for"]}`,
+                inline: true,
+              },
+              {
+                name: "Cloudflare Country",
+                value: req.headers["CF-IPCountry"],
+                inline: true,
               },
             ],
           },
