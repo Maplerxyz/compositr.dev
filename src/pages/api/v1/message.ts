@@ -85,7 +85,7 @@ export default async function handler(
               },
               {
                 name: "Cloudflare Country",
-                value: req.headers["CF-IPCountry"],
+                value: req.headers["CF-IPCountry"] ?? "No country",
                 inline: true,
               },
             ],
@@ -95,11 +95,8 @@ export default async function handler(
       }),
     }).then((r) => {
       if (!r.ok) {
-        console.log(
-          Object.keys(req.headers)
-            .map((k) => `${k}: ${req.headers[k]}`)
-            .join("\n")
-        );
+        console.error(`Something went wrong`)
+        console.error(`Request Code: ${r.status}`)
         throw new Error(`Something went wrong.`);
       }
       return r;
